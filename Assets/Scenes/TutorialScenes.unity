@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &281964505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281964506}
+  m_Layer: 0
+  m_Name: PrefabObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &281964506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281964505}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &687955446
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,8 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81cf0e1ac9f3be9478c679382273ee7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewPortLimitMax: {x: 8, y: 4.2}
-  viewPortLimitMin: {x: -8, y: -4.2}
+  viewPortLimitMax: {x: 8, y: 4.2, z: 0}
+  viewPortLimitMin: {x: -8, y: -4.2, z: 0}
 --- !u!1 &1050006431
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +462,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1646227226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1646227227}
+  m_Layer: 0
+  m_Name: ShootTrs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1646227227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646227226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1859707741}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1858734358
 GameObject:
@@ -609,7 +671,8 @@ Transform:
   m_LocalPosition: {x: -8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1646227227}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -697,13 +760,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22dc65a0f520f2e4298785ada2c083fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 0
-  CurHp: 0
-  MaxMP: 0
-  CurMp: 0
+  MaxHp: 30
+  CurHp: 30
+  MaxMP: 30
+  CurMp: 30
   MoveSpeed: 5
-  NormalShot: 0
-  PowerShot: 0
+  NormalShot: 3
+  PowerShot: 15
+  FabBullet: {fileID: 642736746997902938, guid: ca2d16f08c1c70e40b6676df31bca6da, type: 3}
+  FabPowerBullet: {fileID: 1014494264365373518, guid: e14571df6c9f8e64e80c3cbd63eefb06, type: 3}
+  PrefabObject: {fileID: 281964506}
+  ShootTrs: {fileID: 1646227227}
+  fireRateTime: 1
 --- !u!1 &1961274346
 GameObject:
   m_ObjectHideFlags: 0
