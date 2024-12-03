@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -18,13 +19,16 @@ public class PlayerCont : MonoBehaviour
     [Header("플레이어 공격력")]
     [SerializeField] float NormalShot;
     [SerializeField] float PowerShot;
+    [SerializeField] bool NoramlAtkCheck;
+    [SerializeField] bool PowerAtkCheck;
 
     [Header("총알")]
     [SerializeField] GameObject FabBullet;//프리펩 원본 오브젝트 사용
     [SerializeField] GameObject FabPowerBullet;
     [SerializeField] Transform PrefabObject;//프리펩 오브젝트 생성 시 위치
     [SerializeField] Transform ShootTrs;//공격 포지션
-    [SerializeField] float fireRateTime = 0.5f;//이시간이 지나면 총알이 발사됨
+    [SerializeField] float fireRateTime = 0f;//이시간이 지나면 총알이 발사됨
+    [SerializeField] float firePowerRateTime = 0f;
     float fireTimer = 0;//fireRateTime 시간을 측정하기 위한 변수
 
 
@@ -35,7 +39,7 @@ public class PlayerCont : MonoBehaviour
 
     private void Awake()
     {
-        
+
     }
 
     // Start is called before the first frame update
@@ -69,23 +73,33 @@ public class PlayerCont : MonoBehaviour
 
     private void normalAtk()//Z키를 누르면 노말샷
     {
-        if(Input.GetKey(KeyCode.Z) == true)
+        if (Input.GetKey(KeyCode.Z) == true)
         {
-            createBullet();
-            fireTimer += Time.deltaTime;//시간 측정, 1초가 지나면 1이 될수있도록 소수점들이 fireTimer에 쌓임
+            fireTimer += Time.deltaTime;
             if (fireTimer > fireRateTime)
             {
+                Debug.Log("노말 어택");
                 createBullet();
+                fireTimer = 0;
             }
-            fireTimer = 0;
+
+
+            //createBullet();
+            //fireTimer += Time.deltaTime;//시간 측정, 1초가 지나면 1이 될수있도록 소수점들이 fireTimer에 쌓임
+            //if (fireTimer > fireRateTime)
+            //{
+            //    createBullet();
+            //    fireTimer = 0;
+            //}
+
         }
     }
 
-    private void powerAtk()//X키를 누르면 2초간 차지 후 파워샷
+    private void powerAtk()//X키를 누르면 2초간 차지 후 파워샷, MP10 감소
     {
-        if (Input.GetKeyDown(KeyCode.X) == true)
-        {
-
+        if (Input.GetKey(KeyCode.X) == true)
+        {      
+            
         }
     }
 
@@ -95,4 +109,6 @@ public class PlayerCont : MonoBehaviour
         Bullet goSc = go.GetComponent<Bullet>();
         //goSc.isShootEnemy = true;
     }
+
+
 }
