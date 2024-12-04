@@ -82,24 +82,21 @@ public class PlayerCont : MonoBehaviour
                 createBullet();
                 fireTimer = 0;
             }
-
-
-            //createBullet();
-            //fireTimer += Time.deltaTime;//시간 측정, 1초가 지나면 1이 될수있도록 소수점들이 fireTimer에 쌓임
-            //if (fireTimer > fireRateTime)
-            //{
-            //    createBullet();
-            //    fireTimer = 0;
-            //}
-
         }
     }
 
     private void powerAtk()//X키를 누르면 2초간 차지 후 파워샷, MP10 감소
     {
         if (Input.GetKey(KeyCode.X) == true)
-        {      
+        {
+            fireTimer += Time.deltaTime;
             
+            if (fireTimer > firePowerRateTime)
+            {
+                Debug.Log("노말 어택 차지");
+                createPowerBullet();
+                fireTimer = 0;
+            }
         }
     }
 
@@ -108,6 +105,12 @@ public class PlayerCont : MonoBehaviour
         GameObject go = Instantiate(FabBullet, ShootTrs.position, Quaternion.identity, PrefabObject);
         Bullet goSc = go.GetComponent<Bullet>();
         //goSc.isShootEnemy = true;
+    }
+
+    private void createPowerBullet()
+    {
+        GameObject go = Instantiate(FabPowerBullet, ShootTrs.position, Quaternion.Euler(0, 0, 90), PrefabObject);
+        Bullet goSc = go.GetComponent<Bullet>();
     }
 
 
