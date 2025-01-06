@@ -310,17 +310,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4112059495671538082, guid: 446f0a6739a138040a44e4a61021667a, type: 3}
   m_PrefabInstance: {fileID: 187594232}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &187594234 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 133247095542429014, guid: 446f0a6739a138040a44e4a61021667a, type: 3}
-  m_PrefabInstance: {fileID: 187594232}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &347966015
 GameObject:
   m_ObjectHideFlags: 0
@@ -28634,17 +28623,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4112059495671538082, guid: 446f0a6739a138040a44e4a61021667a, type: 3}
   m_PrefabInstance: {fileID: 1217343273}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1217343275 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 133247095542429014, guid: 446f0a6739a138040a44e4a61021667a, type: 3}
-  m_PrefabInstance: {fileID: 1217343273}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1287925003
 GameObject:
   m_ObjectHideFlags: 0
@@ -28657,8 +28635,9 @@ GameObject:
   - component: {fileID: 1287925006}
   - component: {fileID: 1287925005}
   - component: {fileID: 1287925004}
+  - component: {fileID: 1287925008}
   m_Layer: 5
-  m_Name: GameUI
+  m_Name: GameMenuUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28749,6 +28728,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1287925008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287925003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7109e3bbe16d2e94588a1b92f4714ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuBtn: {fileID: 0}
+  CancelBtn: {fileID: 0}
+  OptionBtn: {fileID: 0}
+  SaveBtn: {fileID: 0}
+  TitleBtn: {fileID: 0}
+  ExitBtn: {fileID: 0}
+  ExitReconfirmBtn: {fileID: 0}
+  ExitCancelBtn: {fileID: 0}
+  MenuWindow: {fileID: 0}
+  ExitWindow: {fileID: 0}
 --- !u!1 &1291337418
 GameObject:
   m_ObjectHideFlags: 0
@@ -31003,7 +31004,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2013990115}
   - component: {fileID: 2013990114}
-  - component: {fileID: 2013990113}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -31011,28 +31011,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2013990113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013990112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7109e3bbe16d2e94588a1b92f4714ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MenuBtn: {fileID: 1907978077}
-  CancelBtn: {fileID: 1113551158}
-  OptionBtn: {fileID: 1447542253}
-  SaveBtn: {fileID: 642340159}
-  TitleBtn: {fileID: 1529565994}
-  ExitBtn: {fileID: 1100905248}
-  ExitReconfirmBtn: {fileID: 1217343275}
-  ExitCancelBtn: {fileID: 187594234}
-  MenuWindow: {fileID: 904780327}
-  ExitWindow: {fileID: 1291337418}
 --- !u!114 &2013990114
 MonoBehaviour:
   m_ObjectHideFlags: 0

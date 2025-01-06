@@ -42,11 +42,11 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if(null ==  Instance)
+            if(null == Instance)
             {
                 return null;
             }
-            return Instance;
+            return null;
         }
     }
 

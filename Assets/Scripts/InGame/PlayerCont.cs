@@ -37,7 +37,6 @@ public class PlayerCont : MonoBehaviour
     private Rigidbody2D rigid;
     private Collider2D collider;
     private Animator Anim;
-    private playerController playerController;
 
     private void Awake()
     {
@@ -47,7 +46,6 @@ public class PlayerCont : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GetComponent<playerController>();
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         Anim = GetComponent<Animator>();
