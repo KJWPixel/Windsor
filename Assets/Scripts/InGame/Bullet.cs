@@ -15,6 +15,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, bulletDestroyTime);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) //collision은 상대 콜리전
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {

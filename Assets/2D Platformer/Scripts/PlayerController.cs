@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -95,6 +96,11 @@ namespace Platformer
                 gameManager.coinsCounter += 1;
                 Destroy(other.gameObject);
             }
+        }
+
+        public static implicit operator PlayerController(playerController v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

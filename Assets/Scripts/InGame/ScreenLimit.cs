@@ -13,12 +13,10 @@ public class ScreenLimit : MonoBehaviour
 
     GameObject Player;
     Camera cam;
-    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameManager.instance;
         Player = GameObject.Find("Player");
     }
 

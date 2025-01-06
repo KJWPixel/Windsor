@@ -1,3 +1,4 @@
+using Platformer;
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -36,15 +37,17 @@ public class PlayerCont : MonoBehaviour
     private Rigidbody2D rigid;
     private Collider2D collider;
     private Animator Anim;
+    private playerController playerController;
 
     private void Awake()
     {
-
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        playerController = GetComponent<playerController>();
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         Anim = GetComponent<Animator>();
@@ -87,14 +90,15 @@ public class PlayerCont : MonoBehaviour
 
     private void powerAtk()//X키를 누르면 2초간 차지 후 파워샷, MP10 감소
     {
-        if (Input.GetKey(KeyCode.X) == true)
+        if (Input.GetKey(KeyCode.X) == true && CurMp >= 30)
         {
             fireTimer += Time.deltaTime;
             
             if (fireTimer > firePowerRateTime)
             {
-                Debug.Log("노말 어택 차지");
+                Debug.Log("파워 어택 차지");
                 createPowerBullet();
+                CurMp += -30;
                 fireTimer = 0;
             }
         }

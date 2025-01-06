@@ -5,39 +5,47 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class playerController : MonoBehaviour
 {
     [Header("플레이어 레벨")]
     [SerializeField] int PlayerLevel = 1;
-    [Header("플레이어 체력")]
-    [SerializeField] float PlayerMaxHP = 10;
-    [SerializeField] float PlayerCurHP = 10;
-    [SerializeField] float PlayerMaxMP = 10;
-    [SerializeField] float PlayerCurMP = 10;
+    [SerializeField] float Exp = 0;
 
-    [Header("플레이어 이동")]
-    [SerializeField] float MoveSpeed = 0;
+    [Header("플레이어 체력")]
+    [SerializeField] public float MaxHp;
+    [SerializeField] public float CurHp;
+    [SerializeField] public float MaxMP;
+    [SerializeField] public float CurMp;
+
+    [Header("플레이어 이동속도")]
+    [SerializeField] float MoveSpeed;
+
+    [Header("플레이어 공격력")]
+    [SerializeField] public float NormalShot;
+    [SerializeField] public float PowerShot;
+    //[SerializeField] bool NoramlAtkCheck;
+    //[SerializeField] bool PowerAtkCheck;
 
     private Camera cam;
     private Rigidbody2D Rigidbody;
     private Collider2D Collider;
     private Animator Anim;
     private Vector3 MoveDir;
-    GameManager gameManager; //변수 생성
-    
+    GameManager gameManager; //게임매니저 변수 생성
+
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         //태그가 포탈이고 레이어가 TutoPotar이면 True
-        if (collider.tag == "Potar" && collider.gameObject.layer == LayerMask.NameToLayer("TutoPotar"))
+        if (collider.tag == "Potar" && collider.gameObject.layer == LayerMask.NameToLayer("Ep1Potar"))
         {
-            gameManager.Epi1Potar = true;
+            gameManager.Ep1Potar = true;
         }
     }
 
     private void Awake()
     {
-        
+
     }
 
 
@@ -47,7 +55,8 @@ public class PlayerController : MonoBehaviour
         Rigidbody = GetComponent<Rigidbody2D>();
         Collider = GetComponent<Collider2D>();
         Anim = GetComponent<Animator>();
-        //위에서 변수를 선언하고 연결할 클래스입력, public 변수만 가능
+
+        //FindObjectOfType<>(); 위에서 변수를 선언하고 연결할 클래스입력, public 변수만 가능
         gameManager = FindObjectOfType<GameManager>();
     }
 
