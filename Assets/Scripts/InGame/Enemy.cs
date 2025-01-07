@@ -15,24 +15,35 @@ public class Enemy : MonoBehaviour
     [Header("적 이동속도")]
     [SerializeField] protected float EnemySpeed;
     [Header("적 공격력")]
-    [SerializeField] protected float EnemtAtkPower;
+    [SerializeField] public float EnemtAtkPower;
     [Header("적 점수")]
     [SerializeField] protected float score;
     #endregion
 
     #region 프리베이트 private
-    Sprite defaultSprite;
+    SpriteRenderer spriteRenderer;
+    Animation anim;
     [SerializeField] private Sprite hitSprite;
+    [SerializeField] float invincibiltyTime;
+    [SerializeField] float invincibiltyTimer;
 
     private bool isDied = false;
+    private bool enemyinvincibiltyCheck = false;
+    
     #endregion
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "player")
+        if(collision.tag == "player")//플레이어와 접촉하였을 시 Hit()
         {
-
+            PlayerCont player = collision.GetComponent<PlayerCont>();
+            player.Hit(EnemtAtkPower);
         }
+    }
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animation>();
     }
 
     // Start is called before the first frame update
@@ -47,8 +58,38 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void Hit(float _damage)
+    public void Hit(float _damage)//총알에 맞을 시 동작하게 
     {
+        if(isDied == true)//Enemy isDied가 True면 리턴
+        {
+            return;
+        }
 
+        CurHp -= _damage;
+        //enemyinvincibiltyCheck = true;
+
+        if (CurHp <= 0)
+        {
+            isDied = true;
+            Destroy(gameObject);
+        }
+    }
+
+    private void invincibiltyCheck()//Hit되었을 시 Color.a 값을 변경시켜줄 함수
+    {
+        Color color = spriteRenderer.color;
+        if (enemyinvincibiltyCheck == true)
+        {
+            color.a = 0.5f;
+            invincibiltyTimer += Time.deltaTime;
+        }
+        
+        if(invincibiltyTimer > invincibiltyTime)//지정시간을 넘을 시 color.a 1, 시간 초기화 및 false
+        {
+            color.a = 1f;
+            invincibiltyTimer = 0;
+            enemyinvincibiltyCheck = false;
+        }
+        spriteRenderer.color = color;
     }
 }

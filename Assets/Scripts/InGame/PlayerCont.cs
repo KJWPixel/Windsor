@@ -38,6 +38,8 @@ public class PlayerCont : MonoBehaviour
     private Collider2D collider;
     private Animator Anim;
 
+   
+
     private void Awake()
     {
         
@@ -57,6 +59,7 @@ public class PlayerCont : MonoBehaviour
         PlayerMove();
         normalAtk();
         powerAtk();
+        
     }
 
     private void PlayerMove()
@@ -113,6 +116,11 @@ public class PlayerCont : MonoBehaviour
     {
         GameObject go = Instantiate(FabPowerBullet, ShootTrs.position, Quaternion.Euler(0, 0, 90), PrefabObject);
         Bullet goSc = go.GetComponent<Bullet>();
+    }
+
+    public void Hit(float _damage)
+    {
+        CurHp -= _damage;
     }
 
 

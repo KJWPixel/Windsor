@@ -31,15 +31,14 @@ public class playerController : MonoBehaviour
     private Collider2D Collider;
     private Animator Anim;
     private Vector3 MoveDir;
-    GameManager gameManager; //게임매니저 변수 생성
-
+    
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         //태그가 포탈이고 레이어가 TutoPotar이면 True
         if (collider.tag == "Potar" && collider.gameObject.layer == LayerMask.NameToLayer("Ep1Potar"))
         {
-            gameManager.Ep1Potar = true;
+            //sceneManager.Ep1Potar = true;
         }
     }
 
@@ -57,7 +56,7 @@ public class playerController : MonoBehaviour
         Anim = GetComponent<Animator>();
 
         //FindObjectOfType<>(); 위에서 변수를 선언하고 연결할 클래스입력, public 변수만 가능
-        gameManager = FindObjectOfType<GameManager>();
+        //sceneManager = FindObjectOfType<SceneManager>();
     }
 
     

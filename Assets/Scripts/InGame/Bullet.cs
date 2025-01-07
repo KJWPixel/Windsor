@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [Header("총알 속도")]
     [SerializeField] float bulletSpeed;
     [SerializeField] float bulletDestroyTime = 1f;//총알 삭제 시간
+    [SerializeField] float bulletDamage;
     public bool isShootEnemy = true;
 
     private void OnBecameInvisible()
@@ -17,7 +18,18 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) //collision은 상대 콜리전
     {
+        if (collision.tag == "player")
+        {
+            PlayerCont player = collision.GetComponent<PlayerCont>();
+            player.Hit(bulletDamage);
+        }
 
+        if(collision.tag == "Enemy")
+        {
+            Destroy(gameObject);
+            Enemy enemy = collision.GetComponent<Enemy>();
+            enemy.Hit(bulletDamage);
+        }
     }
 
     // Start is called before the first frame update

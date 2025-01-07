@@ -47,7 +47,7 @@ public class MainMenuManager : MonoBehaviour
     private void GameStart()
     {
         //게임시작 메인게임으로 이동
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
     private void Continuing()
