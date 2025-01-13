@@ -33,10 +33,10 @@ public class PlayerCont : MonoBehaviour
     float fireTimer = 0;//fireRateTime 시간을 측정하기 위한 변수
 
 
-    private Vector3 MoveDir;
-    private Rigidbody2D rigid;
-    private Collider2D collider;
-    private Animator Anim;
+    Vector3 MoveDir;
+    Rigidbody2D rigid;
+    Collider2D collider;
+    Animator Anim;
 
    
 
@@ -120,6 +120,7 @@ public class PlayerCont : MonoBehaviour
 
     public void Hit(float _damage)
     {
+        Debug.Log("플레이어 Hit");
         CurHp -= _damage;
     }
 

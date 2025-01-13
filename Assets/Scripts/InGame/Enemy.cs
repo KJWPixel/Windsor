@@ -20,28 +20,37 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float score;
     #endregion
 
-    #region 프리베이트 private
-    SpriteRenderer spriteRenderer;
-    Animation anim;
-    [SerializeField] private Sprite hitSprite;
+    [SerializeField] private bool AtkCheck = false;//AtkCheck가 true일때만 Bullet 발사 
+    [SerializeField] GameObject EnemyBullet;//Enemy Bullet
+    [SerializeField] Transform EnemyShotTrs;//Enemy Bullet
+    [SerializeField] Transform PrefabObject;//Enemy Bullet
+
     [SerializeField] float invincibiltyTime;
     [SerializeField] float invincibiltyTimer;
 
+    //Enemy 기능 Check
     private bool isDied = false;
     private bool enemyinvincibiltyCheck = false;
-    
-    #endregion
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    Vector3 MoveDir;
+    Rigidbody2D rigid;
+    Collider2D collider;
+    SpriteRenderer spriteRenderer;
+    Animation anim;
+
+
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        if(collision.tag == "player")//플레이어와 접촉하였을 시 Hit()
+        if(other.tag == "Player")//플레이어와 접촉하였을 시 플레이어Hit(매개변수) 함수로 Hp 감소
         {
-            PlayerCont player = collision.GetComponent<PlayerCont>();
+            PlayerCont player = other.GetComponent<PlayerCont>();
             player.Hit(EnemtAtkPower);
         }
     }
     private void Awake()
     {
+        rigid = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animation>();
     }
@@ -56,6 +65,16 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void createBullet()
+    {
+        if(AtkCheck == true)
+        {
+            GameObject go = Instantiate(EnemyBullet, EnemyShotTrs.position, Quaternion.identity, PrefabObject);
+            Bullet goSc = go.GetComponent<Bullet>();
+            //goSc.isShootEnemy = true;
+        }
     }
 
     public void Hit(float _damage)//총알에 맞을 시 동작하게 
