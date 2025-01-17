@@ -120,8 +120,19 @@ public class PlayerCont : MonoBehaviour
 
     public void Hit(float _damage)
     {
-        Debug.Log("플레이어 Hit");
-        CurHp -= _damage;
+        if(CurHp > 0)//플레이어의 Hp가 0초과면 Hit 
+        {
+            Debug.Log("플레이어 Hit");
+            CurHp -= _damage;
+        }
+        else if (CurHp <= 0)//플레이어의 Hp가 0이하면 Destroy 플레이어
+        {
+            Debug.Log("플레이어 Die");
+            Destroy(gameObject);
+        }
+        
+
+        
     }
 
 
