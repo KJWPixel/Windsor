@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "player")
         {
-            PlayerCont player = collision.GetComponent<PlayerCont>();
+            PlayerControll player = collision.GetComponent<PlayerControll>();
             player.Hit(bulletDamage);
         }
 

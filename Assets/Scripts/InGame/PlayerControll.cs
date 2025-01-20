@@ -6,7 +6,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class PlayerCont : MonoBehaviour
+public class PlayerControll : MonoBehaviour
 {
     [Header("플레이어 체력")]
     [SerializeField] float MaxHp;
@@ -32,19 +32,23 @@ public class PlayerCont : MonoBehaviour
     [SerializeField] float firePowerRateTime = 0f;
     float fireTimer = 0;//fireRateTime 시간을 측정하기 위한 변수
 
-
+    GameManager gameManager;
     Vector3 MoveDir;
     Rigidbody2D rigid;
     Collider2D collider;
     Animator Anim;
+    private WindowLimiter limiter;
 
-   
 
     private void Awake()
     {
         
     }
 
+    private void InitPlayer()//게임을 처음 시작하면 초기화할 변수
+    {
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -57,12 +61,13 @@ public class PlayerCont : MonoBehaviour
     void Update()
     {
         PlayerMove();
+        checkPlayerPos();
         normalAtk();
         powerAtk();
         
     }
 
-    private void PlayerMove()
+    private void PlayerMove()//Player Move동작 
     {
         //MoveDir.x = Input.GetAxisRaw("Horizontal") * MoveSpeed;
         //MoveDir.y = Input.GetAxisRaw("Vertical") * MoveSpeed;
@@ -73,6 +78,15 @@ public class PlayerCont : MonoBehaviour
         // 방향키에 따른 움직임 + 속도 + Time.deltaTime
         transform.position += MoveDir * MoveSpeed * Time.deltaTime;
         rigid.velocity = MoveDir;//MoveDir;
+    }
+
+    private void checkPlayerPos()
+    {
+        if (limiter == null)
+        {
+            limiter = gameManager._Limiter;
+        }
+        transform.position = limiter.checkMovePosition(transform.position);
     }
 
     private void normalAtk()//Z키를 누르면 노말샷

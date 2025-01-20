@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
     {
         if(other.tag == "Player")//플레이어와 접촉하였을 시 플레이어Hit(매개변수) 함수로 Hp 감소
         {
-            PlayerCont player = other.GetComponent<PlayerCont>();
+            PlayerControll player = other.GetComponent<PlayerControll>();
             player.Hit(EnemtAtkPower);
         }
     }

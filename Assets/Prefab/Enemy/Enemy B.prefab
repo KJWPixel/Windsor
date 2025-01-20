@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7549418072578231180}
   m_Layer: 0
   m_Name: Enemy B
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 1956486454371246222}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &6970727144325963868
 MonoBehaviour:
@@ -55,7 +55,7 @@ MonoBehaviour:
   score: 10
   AtkCheck: 0
   EnemyBullet: {fileID: 0}
-  EnemyShotTrs: {fileID: 0}
+  EnemyShotTrs: {fileID: 1956486454371246222}
   PrefabObject: {fileID: 0}
   invincibiltyTime: 0
   invincibiltyTimer: 0
