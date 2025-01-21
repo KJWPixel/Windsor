@@ -2,6 +2,7 @@ using Platformer;
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Runtime.ConstrainedExecution;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -13,6 +14,7 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float CurHp;
     [SerializeField] float MaxMP;
     [SerializeField] float CurMp;
+    float beforeHp;
 
     [Header("플레이어 이동속도")]
     [SerializeField] float MoveSpeed;
@@ -32,13 +34,33 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float firePowerRateTime = 0f;
     float fireTimer = 0;//fireRateTime 시간을 측정하기 위한 변수
 
+    [Header("플레이어 화면 제한")]//Range를 이용하여 수치를 제한함
+    [SerializeField, Range(0.0f, 1f)] float viewPortLimitMinX;
+    [SerializeField, Range(0.0f, 1f)] float viewPortLimitMinY;
+    [SerializeField, Range(0.0f, 1f)] float viewPortLimitMaxX;
+    [SerializeField, Range(0.0f, 1f)] float viewPortLimitMaxY;
+
     GameManager gameManager;
     Vector3 MoveDir;
     Rigidbody2D rigid;
     Collider2D collider;
     Animator Anim;
     private WindowLimiter limiter;
+    Camera cam;
 
+    private void OnValidate()//인스펙터에서 어떤값이 변동이 생기면 호출
+    {
+        if (Application.isPlaying == false)//유니티에디터가 PlayMode인지 판단
+        {
+            return;
+        }
+
+        //if (beforeHp != CurHp)
+        //{
+        //    beforeHp = CurHp;
+        //    GameManager.Instance.SetHp(MaxHp, CurHp);
+        //}
+    }
 
     private void Awake()
     {
@@ -55,6 +77,8 @@ public class PlayerControll : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         Anim = GetComponent<Animator>();
+        cam = Camera.main;
+        gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
@@ -80,13 +104,16 @@ public class PlayerControll : MonoBehaviour
         rigid.velocity = MoveDir;//MoveDir;
     }
 
-    private void checkPlayerPos()
+    private void checkPlayerPos()//플레이어의 화면 이동 제한
     {
-        if (limiter == null)
-        {
-            limiter = gameManager._Limiter;
-        }
-        transform.position = limiter.checkMovePosition(transform.position);
+        //Vector3 월드공간을 뷰포트로 변경 => 화면상 좌하단(0,0) 우상단(1,1)로 변경됨  
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        if(pos.x < viewPortLimitMinX) pos.x = viewPortLimitMinX;//직렬화로 인스펙터에서 수정가능
+        if(pos.x > viewPortLimitMaxX) pos.x = viewPortLimitMaxX;
+        if(pos.y < viewPortLimitMinY) pos.y = viewPortLimitMinY;
+        if(pos.y > viewPortLimitMaxY) pos.y = viewPortLimitMaxY;
+
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
     private void normalAtk()//Z키를 누르면 노말샷
@@ -107,11 +134,12 @@ public class PlayerControll : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.X) == true && CurMp >= 30)
         {
+            Debug.Log("파워 어택 차지");
             fireTimer += Time.deltaTime;
             
             if (fireTimer > firePowerRateTime)
             {
-                Debug.Log("파워 어택 차지");
+                Debug.Log("파워 어택");
                 createPowerBullet();
                 CurMp += -30;
                 fireTimer = 0;

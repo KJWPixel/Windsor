@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 10
   bulletDestroyTime: 1
+  bulletDamage: 5
   isShootEnemy: 1
 --- !u!212 &4960466328433238013
 SpriteRenderer:

@@ -17,19 +17,19 @@ public class GameManager : MonoBehaviour
     bool isSpawnBoss = false;//보스 등장 중인지 체크 
     //true면 보스를 제외한 적기는 나오지 않게 할 용도
 
-    private WindowLimiter limiter;
-    public WindowLimiter _Limiter
-    {
-        get { return limiter; }
-        set { limiter = value; }
-    }
+    //private WindowLimiter limiter;
+    //public WindowLimiter _Limiter
+    //{
+    //    get { return limiter; }
+    //    set { limiter = value; }
+    //}
 
-    PlayerControll player;
-    public PlayerControll _Player
-    {
-        get { return player; }
-        set { player = value; }
-    }
+    //PlayerControll player;
+    //public PlayerControll _Player
+    //{
+    //    get { return player; }
+    //    set { player = value; }
+    //}
 
     private void Awake()
     {
@@ -62,5 +62,11 @@ public class GameManager : MonoBehaviour
         
     }
 
- 
+    public void SetHp(float _maxHp, float _curHp)
+    {
+        //펑션 hp에게 알려줘야함
+        //HPMPfunction.SetHp(_maxHp, _curHp);
+    }
+
+
 }
